@@ -17,7 +17,7 @@ public class SpeakerUIController : MonoBehaviour
         set
         {
             speaker = value;
-            // portrait.sprite = speaker.portrait;
+            portrait.sprite = speaker.portrait;
             fullName.text = speaker.fullName;
         }
     }
