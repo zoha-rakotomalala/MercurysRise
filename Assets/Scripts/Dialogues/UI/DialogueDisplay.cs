@@ -30,8 +30,6 @@ public class DialogueDisplay : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //DisplayLine();
-            //activeLineIndex += 1;
             AdvanceConversation();
         }
     }
