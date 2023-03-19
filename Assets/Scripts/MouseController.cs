@@ -8,11 +8,7 @@ using UnityEngine;
     public class MouseController : MonoBehaviour
     {
         public GameObject cursor;
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
+   
 
         // Update is called once per frame
         void LateUpdate()
@@ -23,11 +19,10 @@ using UnityEngine;
             {
                 GameObject overlayTile = highlight.Value.collider.gameObject;
                 cursor.transform.position = overlayTile.transform.position;
-                cursor.GetComponent<SpriteRenderer>().sortingOrder = overlayTile.GetComponent<SpriteRenderer>().sortingOrder;
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    overlayTile.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                overlayTile.GetComponent<SpriteRenderer>().color = cursor.GetComponent<SpriteRenderer>().color;
                 }
             }
         }

@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
+    // Singleton for instances of each tile
+
     private static MapManager _instance;
     public static MapManager Instance
     {
@@ -17,6 +19,7 @@ public class MapManager : MonoBehaviour
     public GameObject overlayPrefab;
     public GameObject overlayContainer;
 
+    //Dictionary of tiles that the player can move to
     public Dictionary<Vector2Int, GameObject> MovementMap;
 
     private void Awake()
@@ -36,9 +39,13 @@ public class MapManager : MonoBehaviour
     {
 
         MovementMap = new Dictionary<Vector2Int, GameObject>();
+
+        //tilemap objects
         var tileMap = gameObject.GetComponentInChildren<Tilemap>();
 
         BoundsInt bounds = tileMap.cellBounds;
+
+        //gets every avaiable tile on the tilemap
 
         for (int y = bounds.min.y; y < bounds.max.y; y++)
         {
@@ -51,7 +58,6 @@ public class MapManager : MonoBehaviour
                     var overlayTile = Instantiate(overlayPrefab, overlayContainer.transform);
                     var cellWorldPosition = tileMap.GetCellCenterWorld(tileLocation);
                     overlayTile.transform.position = new Vector3(cellWorldPosition.x, cellWorldPosition.y, cellWorldPosition.z+1);
-                    overlayTile.GetComponent<SpriteRenderer>().sortingOrder = tileMap.GetComponent<TilemapRenderer>().sortingOrder;
                     MovementMap.Add(tileKey, overlayTile);
                 }
             }
