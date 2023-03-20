@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int moveRange = 3; 
+    public int moveRange = 3;
     public float moveSpeed = 3f;
     [SerializeField] private OverlaySystem OverlaySystem;
 
@@ -83,10 +83,9 @@ public class Player : MonoBehaviour
         return GetValidMoveLocations(Vector3Int.FloorToInt(transform.position), moveRange);
     }
 
-    private void OnMouseUpAsButton()
+    private void OnMouseDown()
     {
+        Debug.Log("Player clicked");
         OverlaySystem.ShowValidMoveLocations(this);
     }
 }
-
-
