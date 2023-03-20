@@ -5,7 +5,7 @@ public class CharacterMovement : MonoBehaviour
 {
     // Reference to the tilemaps for the level and obstacles
     public Tilemap tilemap;
-    public Tilemap obstacleTilemap;
+    //public Tilemap obstacleTilemap;
 
     // The current, target, and next tile positions for the character
     private Vector3Int currentTile;
@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
             Vector3 targetPosition = tilemap.GetCellCenterWorld(nextTile);
 
             // If the next tile is not an obstacle tile, move towards it
-            if (!obstacleTilemap.HasTile(obstacleTilemap.WorldToCell(targetPosition)))
+            /*if (!obstacleTilemap.HasTile(obstacleTilemap.WorldToCell(targetPosition)))
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
                 if (transform.position == targetPosition)
@@ -45,10 +45,10 @@ public class CharacterMovement : MonoBehaviour
             }
             // If the next tile is an obstacle tile, stop moving
             else
-            {
+            {*/
                 currentTile = tilemap.WorldToCell(transform.position);
                 nextTile = currentTile;
-            }
+            //}
         }
     }
 

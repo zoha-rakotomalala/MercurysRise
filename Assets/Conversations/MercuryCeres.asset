@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa21560c9acf5541973567fd90f5d40, type: 3}
+  m_Name: MercuryCeres
+  m_EditorClassIdentifier: 
+  speakerLeft: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
+  speakerRight: {fileID: 11400000, guid: aeaac5765bffb614da9fe476d279c542, type: 2}
+  lines:
+  - character: {fileID: 11400000, guid: aeaac5765bffb614da9fe476d279c542, type: 2}
+    text: Mercury, how dare you penetrate into my sacred temple?
+  - character: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
+    text: Hi Ceres, why the sad face? I am just here as a tourist, you should be
+      happy to see anyone coming in this raggedy place.
+  - character: {fileID: 11400000, guid: aeaac5765bffb614da9fe476d279c542, type: 2}
+    text: Do you think some mere insults would be enough to make me lose sight of
+      the obvious? I heard of your ambitions.
+  - character: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
+    text: So you know what I want then? This place shall be mine!
+  - character: {fileID: 11400000, guid: aeaac5765bffb614da9fe476d279c542, type: 2}
+    text: We will see about that. Guards, get into positions and protect the temple!
