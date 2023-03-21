@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
     // Move the player to the target tile position
     public void MoveToTile(Vector3Int targetTilePosition)
     {
+        Debug.Log("Target position in Player Script = "+targetTilePosition.ToString());
+        Debug.Log("Start position in Player Script = " + transform.position.ToString());
+        Debug.Log("Start position in Player Script on tilemap = " + OverlaySystem.backgroundTilemap.WorldToCell(transform.position).ToString());
         List<Vector3Int> path = OverlaySystem.Path(transform.position, targetTilePosition);
         StartCoroutine(MoveToTilePath(path));
     }
