@@ -374,7 +374,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.0765724
+  orthographic size: 11.8150425
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -398,7 +398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194305177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.88, y: -3.52, z: -10}
+  m_LocalPosition: {x: 7.89, y: -6.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -490,7 +490,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0.00012207031, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -12220,7 +12220,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136437420}
   m_Enabled: 1
-  m_CellSize: {x: 0.5, y: 0.5, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -12251,6 +12251,10 @@ PrefabInstance:
     - target: {fileID: 2634454424789966508, guid: ef01da0b2949a474eb1ec9254b0bac5a, type: 3}
       propertyPath: m_Name
       value: SpeakerLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634454424789966508, guid: ef01da0b2949a474eb1ec9254b0bac5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2634454424789966509, guid: ef01da0b2949a474eb1ec9254b0bac5a, type: 3}
       propertyPath: m_Pivot.x
