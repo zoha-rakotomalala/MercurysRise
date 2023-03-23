@@ -4,11 +4,11 @@ using UnityEngine.Tilemaps;
 
 public class OverlaySystem : MonoBehaviour
 {
-    public Tilemap overlayTilemap; 
-    public Tilemap obstaclesTilemap; 
-    public Tilemap enemiesTilemap; 
-    public Tile validMoveTile; 
-    public Tile invalidMoveTile; 
+    public Tilemap overlayTilemap; // The tilemap for displaying valid and invalid move locations
+    public Tilemap obstaclesTilemap; // The tilemap for obstacles that block movement (optional)
+    public Tilemap enemiesTilemap; // The tilemap for enemy locations
+    public Tile validMoveTile; // The tile to display for valid move locations
+    public Tile invalidMoveTile; // The tile to display for invalid move locations
     private Player currentPlayer;
 
     // Clear all tiles on the overlay tilemap when the game starts
@@ -17,7 +17,7 @@ public class OverlaySystem : MonoBehaviour
         overlayTilemap.ClearAllTiles();
     }
 
-    // Handles player movement input and move the player if a valid move location is clicked
+    // Handle player movement input and move the player if a valid move location is clicked
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && currentPlayer != null)
@@ -34,18 +34,19 @@ public class OverlaySystem : MonoBehaviour
         }
     }
 
-    // Check if the given position is a valid move location
+    // Check if the given position is a valid move location (no obstacles or enemies)
     public bool IsValidMove(Vector3Int position)
     {
-        bool noObstacle = !obstaclesTilemap.HasTile(position);
+        bool noObstacle = obstaclesTilemap == null || !obstaclesTilemap.HasTile(position);
         bool noEnemy = enemiesTilemap == null || !enemiesTilemap.HasTile(position);
 
         return noObstacle && noEnemy;
     }
 
-    // Show valid and invalid move locations on the overlay tilemap 
+    // Show valid and invalid move locations on the overlay tilemap based on the player's move range
     public void ShowValidMoveLocations(Player player)
     {
+        Debug.Log("Showing valid move locations");
         overlayTilemap.ClearAllTiles();
         currentPlayer = player;
 
@@ -64,10 +65,12 @@ public class OverlaySystem : MonoBehaviour
                 }
 
                 if (validMoveLocations.Contains(location))
+
                 {
                     overlayTilemap.SetTile(location, validMoveTile);
+                    Debug.Log("Setting valid move tile at: " + location);
                 }
-                else if (!obstaclesTilemap.HasTile(location) && (enemiesTilemap == null || !enemiesTilemap.HasTile(location)))
+                else if (!IsValidMove(location))
                 {
                     overlayTilemap.SetTile(location, invalidMoveTile);
                 }
