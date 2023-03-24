@@ -10,6 +10,7 @@ public class OverlaySystem : MonoBehaviour
     public Tile validMoveTile; // The tile to display for valid move locations
     public Tile invalidMoveTile; // The tile to display for invalid move locations
     private Player currentPlayer;
+    public GameManager gameManager;
 
     // Clear all tiles on the overlay tilemap when the game starts
     private void Start()
@@ -20,7 +21,7 @@ public class OverlaySystem : MonoBehaviour
     // Handle player movement input and move the player if a valid move location is clicked
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && currentPlayer != null)
+        if (Input.GetMouseButtonDown(0) && currentPlayer != null && !currentPlayer.hasMoved)
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
@@ -28,6 +29,8 @@ public class OverlaySystem : MonoBehaviour
             if (overlayTilemap.GetTile(clickedTilePosition) == validMoveTile)
             {
                 currentPlayer.MoveToTile(clickedTilePosition);
+                currentPlayer.hasMoved = true;
+                gameManager.availableCharacters--;
                 overlayTilemap.ClearAllTiles();
                 currentPlayer = null;
             }

@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public int moveRange = 3;
     public float moveSpeed = 3f;
+    public bool hasMoved = false;
+    private GameManager gameManager;
     [SerializeField] private OverlaySystem OverlaySystem;
 
     // Coroutine to move the player to the target position
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     {
         List<Vector3Int> path = OverlaySystem.Path(transform.position, targetTilePosition);
         StartCoroutine(MoveToTilePath(path));
+
     }
 
     // Returns a list of valid move locations for the player
@@ -86,6 +89,14 @@ public class Player : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Player clicked");
-        OverlaySystem.ShowValidMoveLocations(this);
+        if (!hasMoved /*&& gameManager.currentTurn==GameManager.TurnType.Player*/)
+        {
+            OverlaySystem.ShowValidMoveLocations(this);
+        }
+    }
+
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
 }
