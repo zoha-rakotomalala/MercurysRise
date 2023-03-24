@@ -28,7 +28,7 @@ public class DialogueDisplay : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && activeLineIndex!=-1)
         {
             AdvanceConversation();
         }
@@ -44,7 +44,7 @@ public class DialogueDisplay : MonoBehaviour
         {
             speakerUILeft.Hide();
             speakerUIRight.Hide();
-            activeLineIndex= 0;
+            activeLineIndex= -1;
         }
     }
 
