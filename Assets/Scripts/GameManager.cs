@@ -11,24 +11,24 @@ public class GameManager : MonoBehaviour
     }
 
     public TurnType currentTurn;
-    public Player[] playableCharacters;
-    public Player[] enemyCharacters; // To be modified to the enemy class
+    private GameObject[] playableCharacters;
+    private GameObject[] enemyCharacters;
+    // TODO: When player / enemy dies, de-increment those
     public int alivePlayableCharacters;
     public int aliveEnemyCharacters;
+    [HideInInspector]
     public int availableCharacters;
 
     private void SwitchTurns()
     {
-        if (currentTurn == TurnType.Player)
+        Debug.Log("Before:"+availableCharacters);
+        switch (currentTurn)
         {
-            currentTurn = TurnType.Enemy;
-            // Call a method to handle the enemy turn
+            case TurnType.Player: { currentTurn = TurnType.Enemy; availableCharacters = aliveEnemyCharacters; break; }
+            case TurnType.Enemy: {currentTurn= TurnType.Player; availableCharacters = alivePlayableCharacters; break;}
         }
-        else
-        {
-            currentTurn = TurnType.Player;
-            // Call a method to handle the player turn
-        }
+        Debug.Log("After:" + availableCharacters);
+        resetCharacters();
         Debug.Log("New turn: "+ currentTurn);
     }
 
@@ -36,7 +36,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentTurn = TurnType.Player;
-        availableCharacters = alivePlayableCharacters;
+        playableCharacters = GameObject.FindGameObjectsWithTag("Player");
+        enemyCharacters = GameObject.FindGameObjectsWithTag("Enemy");
+        availableCharacters = playableCharacters.Length;
+        alivePlayableCharacters = playableCharacters.Length;
+        aliveEnemyCharacters = enemyCharacters.Length;
+        
     }
 
 
@@ -44,24 +49,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( availableCharacters==0)
+        if(availableCharacters==0)
         {
             SwitchTurns();
-
-            switch(currentTurn)
-            {
-                case TurnType.Player: availableCharacters = alivePlayableCharacters; resetCharacters() ; break;
-                case TurnType.Enemy: availableCharacters = aliveEnemyCharacters; resetCharacters(); break;
-            }
         }
     }
 
     void resetCharacters()
     {
-        switch(currentTurn)
-        {
-            case TurnType.Player: foreach(Player player in playableCharacters) { player.hasMoved = false; }; break;
-            case TurnType.Enemy: foreach(Player player in enemyCharacters) { player.hasMoved = false; } break;
-        }
+            switch (currentTurn)
+            {
+                case TurnType.Player: { foreach (GameObject playerObject in playableCharacters) { playerObject.GetComponent<Player>().hasMoved = false; Debug.Log("player reset"); }; break; }
+                // TODO: Modify the enemyObject.GetComponent<Player> to enemyObject.GetComponent<Enemy> when Enemy instances are defined
+                case TurnType.Enemy: { foreach (GameObject enemyObject in enemyCharacters) { enemyObject.GetComponent<Player>().hasMoved = false; Debug.Log("Enemy reset"); } break; }
+            }
     }
 }

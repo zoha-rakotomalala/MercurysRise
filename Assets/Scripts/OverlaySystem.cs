@@ -10,12 +10,13 @@ public class OverlaySystem : MonoBehaviour
     public Tile validMoveTile; // The tile to display for valid move locations
     public Tile invalidMoveTile; // The tile to display for invalid move locations
     private Player currentPlayer;
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     // Clear all tiles on the overlay tilemap when the game starts
     private void Start()
     {
         overlayTilemap.ClearAllTiles();
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
 
     // Handle player movement input and move the player if a valid move location is clicked
@@ -49,7 +50,7 @@ public class OverlaySystem : MonoBehaviour
     // Show valid and invalid move locations on the overlay tilemap based on the player's move range
     public void ShowValidMoveLocations(Player player)
     {
-        Debug.Log("Showing valid move locations");
+        //Debug.Log("Showing valid move locations");
         overlayTilemap.ClearAllTiles();
         currentPlayer = player;
 
@@ -71,7 +72,7 @@ public class OverlaySystem : MonoBehaviour
 
                 {
                     overlayTilemap.SetTile(location, validMoveTile);
-                    Debug.Log("Setting valid move tile at: " + location);
+                    //Debug.Log("Setting valid move tile at: " + location);
                 }
                 else if (!IsValidMove(location))
                 {
