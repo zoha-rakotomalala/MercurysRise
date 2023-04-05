@@ -4,11 +4,11 @@ using UnityEngine.Tilemaps;
 
 public class OverlaySystem : MonoBehaviour
 {
-    public Tilemap overlayTilemap; // The tilemap for displaying valid and invalid move locations
-    public Tilemap obstaclesTilemap; // The tilemap for obstacles that block movement (optional)
-    public Tilemap enemiesTilemap; // The tilemap for enemy locations
-    public Tile validMoveTile; // The tile to display for valid move locations
-    public Tile invalidMoveTile; // The tile to display for invalid move locations
+    public Tilemap overlayTilemap; 
+    public Tilemap obstaclesTilemap;
+    public Tilemap enemiesTilemap; 
+    public Tile validMoveTile;
+    public Tile invalidMoveTile; 
     private Player currentPlayer;
 
     // Clear all tiles on the overlay tilemap when the game starts
@@ -76,6 +76,45 @@ public class OverlaySystem : MonoBehaviour
                 }
             }
         }
+    }
+    public List<Vector3Int> GetValidMoveLocations(Vector3Int currentPosition, int moveRange)
+    {
+        Queue<Vector3Int> queue = new Queue<Vector3Int>();
+        Dictionary<Vector3Int, int> visited = new Dictionary<Vector3Int, int>();
+
+        queue.Enqueue(currentPosition);
+        visited[currentPosition] = 0;
+
+        List<Vector3Int> validMoveLocations = new List<Vector3Int>();
+
+        Vector3Int[] directions = new Vector3Int[]
+        {
+            Vector3Int.up,
+            Vector3Int.down,
+            Vector3Int.left,
+            Vector3Int.right
+        };
+
+        while (queue.Count > 0)
+        {
+            Vector3Int current = queue.Dequeue();
+            int currentDistance = visited[current];
+
+            foreach (Vector3Int direction in directions)
+            {
+                Vector3Int neighbor = current + direction;
+                int neighborDistance = currentDistance + 1;
+
+                if (IsValidMove(neighbor) && !visited.ContainsKey(neighbor) && neighborDistance <= moveRange)
+                {
+                    queue.Enqueue(neighbor);
+                    visited[neighbor] = neighborDistance;
+                    validMoveLocations.Add(neighbor);
+                }
+            }
+        }
+
+        return validMoveLocations;
     }
 
     // Generates a path from the player's current position to the target tile position
