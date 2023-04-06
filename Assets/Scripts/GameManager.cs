@@ -20,15 +20,16 @@
         [HideInInspector]
         public int availableCharacters;
 
-    void SwitchTurns()
+    IEnumerator SwitchTurns()
     {
         resetCharacters();
 
         switch (currentTurn)
         {
             case TurnType.Player:
-                currentTurn = TurnType.Enemy;
                 availableCharacters = aliveEnemyCharacters;
+                yield return new WaitForSeconds(2f);
+                currentTurn = TurnType.Enemy;
                 break;
 
             case TurnType.Enemy:
@@ -36,6 +37,9 @@
                 availableCharacters = alivePlayableCharacters;
                 break;
         }
+
+        
+
     }
 
 
@@ -58,7 +62,7 @@
         {
             if(availableCharacters==0)
             {
-                SwitchTurns();
+                StartCoroutine(SwitchTurns());
                 Debug.Log("Turn of" + currentTurn);
                 foreach(GameObject c in overlaySystem.occupiedTiles.Keys)
             {
@@ -71,10 +75,12 @@
         {
                 switch (currentTurn)
                 {
-            case TurnType.Player: { foreach (GameObject playerObject in playableCharacters) { playerObject.GetComponent<Player>().hasMoved = false; }; break; }
+            case TurnType.Player: { foreach (GameObject playerObject in playableCharacters) { playerObject.GetComponent<Player>().hasMoved = false; playerObject.GetComponent<Player>().hasAttacked = false; }; break; }
             
             case TurnType.Enemy: { foreach (GameObject enemyObject in enemyCharacters) { enemyObject.GetComponent<EnemyAI>().hasMoved = false; } break; }
         }
     }
+
+    
     }
 

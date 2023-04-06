@@ -16,7 +16,9 @@ public class Player : MonoBehaviour
     [SerializeField] private OverlaySystem OverlaySystem;
     [HideInInspector]
     public bool hasMoved = false;
+    [HideInInspector]
     public bool isDead = false;
+    [HideInInspector]
     public bool hasAttacked = false;
     // Coroutine to move the player to the target position
     private IEnumerator MoveTo(Vector3 targetPosition)
@@ -47,6 +49,8 @@ public class Player : MonoBehaviour
     {
         List<Vector3Int> path = OverlaySystem.Path(transform.position, targetTilePosition);
         StartCoroutine(MoveToTilePath(path));
+        hasMoved = true;
+        FindObjectOfType<GameManager>().availableCharacters--;
 
     }
 
@@ -119,12 +123,22 @@ public class Player : MonoBehaviour
     public void updateHealth(int value)
     {
         health += value;
+        Debug.Log("New Player health: "+ health);
     }
     #endregion
 
     #region Attack_functions
     public void Attack(GameObject enemy)
     {
+        EnemyAI enemyAI= enemy.GetComponent<EnemyAI>();
+        enemyAI.updateHealth(-attackDamages);
+        if (enemyAI.health > 0)
+        {
+            updateHealth(-enemyAI.attackDamages);
+            Debug.Log("Damages received: " + enemyAI.attackDamages);
+        }
+        hasAttacked = true;
+        FindObjectOfType<GameManager>().availableCharacters--;
         //TODO: When the player selects an enemy for the character to attack, we perform a battle, 
         //where the player first attacks the enemy and the enemy's health decreases by the attack damage of the character.
         //If the enemy survives, the player is also receiving damage from the enemy.

@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     public void displayMenu()
     {
         this.gameObject.SetActive(true);
+        currentlyAttacking = false;
     }
 
     public void hideMenu() 
@@ -22,7 +23,7 @@ public class Menu : MonoBehaviour
     public void Move()
     {
         OverlaySystem.ShowValidMoveLocations(targetedPlayer);
-        FindObjectOfType<GameManager>().availableCharacters--;
+        //FindObjectOfType<GameManager>().availableCharacters--;
         //targetedPlayer.hasMoved = true;
         hideMenu();
     }
@@ -43,8 +44,6 @@ public class Menu : MonoBehaviour
         currentlyAttacking= true;
         OverlaySystem.ShowValidAttackLocations(targetedPlayer); 
         hideMenu();
-        targetedPlayer.hasMoved = true;
-        FindObjectOfType<GameManager>().availableCharacters--;
     }
 
     private void Start()

@@ -43,8 +43,6 @@ public class OverlaySystem : MonoBehaviour
             {
                 currentPlayer.MoveToTile(clickedTilePosition);
                 overlayTilemap.ClearAllTiles();
-                currentPlayer.hasMoved = true;
-                //FindObjectOfType<GameManager>().availableCharacters--;
                 currentPlayer = null;
             }
         }

@@ -29,9 +29,13 @@ public class EnemyAI : MonoBehaviour
     {
         if (menu.GetComponent<Menu>().currentlyAttacking)
         {
-            menu.GetComponent<Menu>().enemy = this;
+            //menu.GetComponent<Menu>().enemy = this;
             Debug.Log("Enemy chosen");
             overlaySystem.overlayTilemap.ClearAllTiles();
+            Player targetedPlayer = menu.GetComponent<Menu>().targetedPlayer;
+            targetedPlayer.Attack(this.gameObject);
+            targetedPlayer.hasMoved = true;
+            
         }
         
     }
@@ -89,4 +93,11 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
+
+    #region Health_functions
+    public void updateHealth(int value)
+    {
+        health += value;
+    }
+    #endregion
 }
