@@ -35,9 +35,9 @@ public class EnemyAI : MonoBehaviour
             Player targetedPlayer = menu.GetComponent<Menu>().targetedPlayer;
             targetedPlayer.Attack(this.gameObject);
             targetedPlayer.hasMoved = true;
-            
+
         }
-        
+
     }
     private IEnumerator Init()
     {
@@ -90,6 +90,13 @@ public class EnemyAI : MonoBehaviour
                     }
                 }
                 transform.position = new Vector3(targetTilePosition.x + 0.5f, targetTilePosition.y + 0.5f, transform.position.z);
+                yield return new WaitForSeconds(1f);
+                // Check if the closest player is within attack range
+                float distanceToClosestPlayer = Vector3.Distance(transform.position, closestPlayer.transform.position);
+                if (distanceToClosestPlayer <= attackRange)
+                {
+                    Attack(closestPlayer.gameObject);
+                }
             }
         }
     }
@@ -98,6 +105,34 @@ public class EnemyAI : MonoBehaviour
     public void updateHealth(int value)
     {
         health += value;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        gameManager.aliveEnemyCharacters--;
+        Destroy(this.gameObject);
+        Debug.Log("Enemy killed in action");
+        overlaySystem.occupiedTiles.Remove(this.gameObject);
+        gameManager.enemies.Remove(this.gameObject);
+    }
+    #endregion
+
+    #region Attack_functions
+    public void Attack(GameObject playerGO)
+    {
+        Player player = playerGO.GetComponent<Player>();
+        player.updateHealth(-attackDamages);
+        if (player.health > 0)
+        {
+            updateHealth(-player.attackDamages);
+            Debug.Log("Damages received: " + player.attackDamages);
+        }
+        //FindObjectOfType<GameManager>().availableCharacters--;
+
     }
     #endregion
 }

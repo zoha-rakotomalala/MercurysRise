@@ -104,12 +104,12 @@ public class Player : MonoBehaviour
     {
         // TODO: When Enemy instance created, remove the comment here to make sure Players can only move during their own turn
         Debug.Log("Player clicked");
-        if (!hasMoved && gameManager.currentTurn==GameManager.TurnType.Player)
+        if (!hasMoved && gameManager.currentTurn == GameManager.TurnType.Player)
         {
             //OverlaySystem.ShowValidMoveLocations(this);
             menu.GetComponent<Menu>().displayMenu();
             menu.GetComponent<Menu>().targetedPlayer = this;
-            
+
         }
     }
 
@@ -123,14 +123,27 @@ public class Player : MonoBehaviour
     public void updateHealth(int value)
     {
         health += value;
-        Debug.Log("New Player health: "+ health);
+        Debug.Log("New Player health: " + health);
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        gameManager.alivePlayableCharacters--;
+        Destroy(this.gameObject);
+        Debug.Log("Player killed in action");
+        OverlaySystem.occupiedTiles.Remove(this.gameObject);
+        gameManager.players.Remove(this.gameObject);
     }
     #endregion
 
     #region Attack_functions
     public void Attack(GameObject enemy)
     {
-        EnemyAI enemyAI= enemy.GetComponent<EnemyAI>();
+        EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
         enemyAI.updateHealth(-attackDamages);
         if (enemyAI.health > 0)
         {
@@ -139,9 +152,7 @@ public class Player : MonoBehaviour
         }
         hasAttacked = true;
         FindObjectOfType<GameManager>().availableCharacters--;
-        //TODO: When the player selects an enemy for the character to attack, we perform a battle, 
-        //where the player first attacks the enemy and the enemy's health decreases by the attack damage of the character.
-        //If the enemy survives, the player is also receiving damage from the enemy.
+
     }
     #endregion
 
@@ -155,10 +166,10 @@ public class Player : MonoBehaviour
 
         //TODO: When the player is clicked on and has not moved, we display a menu with three options "Move", "Attack" and "Wait".
         //If the character is next to an enemy, it can attack it, but if they attack before moving, they will not be able to move after, it will finish the turn.
-       //If the player clicks on Move, we show
-       // the possible places to move to, and they can move there. Once they have finished moving, the menu appears again if within attacking range of an enemy, and they can 
-       // choose to attack or wait.
-       // If they choose to wait, it just updates the "hasMoved" field to true, to show that the character has been done with.
+        //If the player clicks on Move, we show
+        // the possible places to move to, and they can move there. Once they have finished moving, the menu appears again if within attacking range of an enemy, and they can 
+        // choose to attack or wait.
+        // If they choose to wait, it just updates the "hasMoved" field to true, to show that the character has been done with.
     }
     #endregion
 }

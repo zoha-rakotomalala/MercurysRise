@@ -15,7 +15,7 @@ public class Menu : MonoBehaviour
         currentlyAttacking = false;
     }
 
-    public void hideMenu() 
+    public void hideMenu()
     {
         this.gameObject.SetActive(false);
     }
@@ -30,7 +30,7 @@ public class Menu : MonoBehaviour
 
     public void Wait()
     {
-        targetedPlayer.hasMoved= true;
+        targetedPlayer.hasMoved = true;
         FindObjectOfType<GameManager>().availableCharacters--;
         hideMenu();
     }
@@ -41,8 +41,8 @@ public class Menu : MonoBehaviour
         /*if (Mathf.Abs(Vector3.Distance(targetedPlayer.transform.position,enemy.transform.position))<=targetedPlayer.attackRange) {
             targetedPlayer.Attack(enemy.gameObject);
         }*/
-        currentlyAttacking= true;
-        OverlaySystem.ShowValidAttackLocations(targetedPlayer); 
+        currentlyAttacking = true;
+        OverlaySystem.ShowValidAttackLocations(targetedPlayer);
         hideMenu();
     }
 

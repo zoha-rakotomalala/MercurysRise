@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackTile
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 439490698, guid: b5b4a362832c01648b34db1a04d33214, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.574666, g: 0, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0
