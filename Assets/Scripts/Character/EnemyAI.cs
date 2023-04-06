@@ -11,8 +11,12 @@ public class EnemyAI : MonoBehaviour
 
     public int moveRange = 3;
     public float moveSpeed = 3f;
+    public int health;
+    public int attackDamages;
+    public int attackRange = 1;
     [HideInInspector]
     public bool hasMoved = false;
+    public bool isDead = false;
 
     private void Start()
     {
