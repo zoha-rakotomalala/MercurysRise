@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
         }
 
         transform.position = targetPosition;
+        //OverlaySystem.occupiedTiles.TryAdd(this.gameObject, targetPosition);
+        OverlaySystem.occupiedTiles[this.gameObject] = Vector3Int.FloorToInt(targetPosition);
     }
 
     // Coroutine to move the player along a path of tiles
@@ -90,7 +93,7 @@ public class Player : MonoBehaviour
     {
         // TODO: When Enemy instance created, remove the comment here to make sure Players can only move during their own turn
         Debug.Log("Player clicked");
-        if (!hasMoved /*&& gameManager.currentTurn==GameManager.TurnType.Player*/)
+        if (!hasMoved && gameManager.currentTurn==GameManager.TurnType.Player)
         {
             OverlaySystem.ShowValidMoveLocations(this);
         }

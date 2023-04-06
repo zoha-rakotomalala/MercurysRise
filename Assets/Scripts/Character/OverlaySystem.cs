@@ -10,10 +10,25 @@ public class OverlaySystem : MonoBehaviour
     public Tile validMoveTile;
     public Tile invalidMoveTile; 
     private Player currentPlayer;
+    [HideInInspector]
+    public Dictionary<GameObject, Vector3> occupiedTiles= new Dictionary<GameObject, Vector3>();
+    private GameObject[] playableCharacters;
+    private GameObject[] enemyCharacters;
 
     private void Start()
     {
         overlayTilemap.ClearAllTiles();
+        playableCharacters = GameObject.FindGameObjectsWithTag("Player");
+        enemyCharacters = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject player in playableCharacters)
+        {
+            occupiedTiles.Add(player, player.GetComponent<Player>().transform.position);
+        }
+        foreach(GameObject enemy in enemyCharacters)
+        {
+            occupiedTiles.Add(enemy, enemy.GetComponent<EnemyAI>().transform.position);
+        }
     }
 
     private void Update()
@@ -39,8 +54,9 @@ public class OverlaySystem : MonoBehaviour
     {
         bool noObstacle = obstaclesTilemap == null || !obstaclesTilemap.HasTile(position);
         bool noEnemy = enemiesTilemap == null || !enemiesTilemap.HasTile(position);
+        bool noOtherCharacter = !occupiedTiles.ContainsValue(position);
 
-        return noObstacle && noEnemy;
+        return noObstacle && noEnemy && noOtherCharacter;
     }
     public Vector3Int GetClosestValidMoveLocation(Vector3Int startPosition, Vector3Int targetPosition, int moveRange)
     {
@@ -97,7 +113,7 @@ public class OverlaySystem : MonoBehaviour
 
     public void ShowValidMoveLocations(Player player)
     {
-        Debug.Log("Showing valid move locations");
+        //Debug.Log("Showing valid move locations");
         overlayTilemap.ClearAllTiles();
         currentPlayer = player;
 
@@ -119,7 +135,7 @@ public class OverlaySystem : MonoBehaviour
 
                 {
                     overlayTilemap.SetTile(location, validMoveTile);
-                    Debug.Log("Setting valid move tile at: " + location);
+                    //Debug.Log("Setting valid move tile at: " + location);
                 }
                 else if (!IsValidMove(location))
                 {

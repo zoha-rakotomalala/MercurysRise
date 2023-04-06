@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -32,6 +33,8 @@ public class EnemyAI : MonoBehaviour
         {
             StartCoroutine(MoveToClosestPlayer());
             hasMoved = true;
+            //overlaySystem.occupiedTiles.(this.gameObject, this.transform.position);
+            overlaySystem.occupiedTiles[this.gameObject] = Vector3Int.FloorToInt(this.transform.position);
             gameManager.availableCharacters--;
         }
     }
@@ -54,7 +57,6 @@ public class EnemyAI : MonoBehaviour
         if (closestPlayer != null)
         {
             Vector3Int targetTilePosition = overlaySystem.GetClosestValidMoveLocation(Vector3Int.FloorToInt(transform.position), Vector3Int.FloorToInt(closestPlayer.transform.position), moveRange);
-
             if (targetTilePosition != Vector3Int.FloorToInt(transform.position))
             {
                 List<Vector3Int> path = overlaySystem.Path(transform.position, targetTilePosition);

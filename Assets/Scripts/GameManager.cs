@@ -13,6 +13,7 @@
         public TurnType currentTurn;
         private GameObject[] playableCharacters;
         private GameObject[] enemyCharacters;
+        private OverlaySystem overlaySystem;
         // TODO: When player / enemy dies, de-increment those
         public int alivePlayableCharacters;
         public int aliveEnemyCharacters;
@@ -48,6 +49,7 @@
             availableCharacters = playableCharacters.Length;
             alivePlayableCharacters = playableCharacters.Length;
             aliveEnemyCharacters = enemyCharacters.Length;
+            overlaySystem = FindObjectOfType<OverlaySystem>();
         
         }
 
@@ -57,6 +59,11 @@
             if(availableCharacters==0)
             {
                 SwitchTurns();
+                Debug.Log("Turn of" + currentTurn);
+                foreach(GameObject c in overlaySystem.occupiedTiles.Keys)
+            {
+                Debug.Log(c.transform.name + " is in position" + overlaySystem.occupiedTiles[c].ToString());
+            }
             }
         }
 
@@ -64,9 +71,9 @@
         {
                 switch (currentTurn)
                 {
-            case TurnType.Player: { foreach (GameObject playerObject in playableCharacters) { playerObject.GetComponent<Player>().hasMoved = false; Debug.Log("player reset"); }; break; }
-            // TODO: Modify the enemyObject.GetComponent<Player> to enemyObject.GetComponent<Enemy> when Enemy instances are defined
-            case TurnType.Enemy: { foreach (GameObject enemyObject in enemyCharacters) { enemyObject.GetComponent<EnemyAI>().hasMoved = false; Debug.Log("Enemy reset"); } break; }
+            case TurnType.Player: { foreach (GameObject playerObject in playableCharacters) { playerObject.GetComponent<Player>().hasMoved = false; }; break; }
+            
+            case TurnType.Enemy: { foreach (GameObject enemyObject in enemyCharacters) { enemyObject.GetComponent<EnemyAI>().hasMoved = false; } break; }
         }
     }
     }
