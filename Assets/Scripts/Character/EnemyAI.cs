@@ -4,69 +4,71 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    private GameManager gameManager;
+    private OverlaySystem overlaySystem;
+    private Player[] playerCharacters;
+
     public int moveRange = 3;
     public float moveSpeed = 3f;
-    public int maxTilesPerMove = 1;
-    [SerializeField] private OverlaySystem overlaySystem;
-    [SerializeField] private Player targetPlayer;
+    [HideInInspector]
+    public bool hasMoved = false;
 
     private void Start()
     {
-        StartCoroutine(MoveTowardsPlayer());
+        StartCoroutine(Init());
     }
 
-    private IEnumerator MoveTo(Vector3 targetPosition)
+    private IEnumerator Init()
     {
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        transform.position = targetPosition;
+        yield return new WaitForSeconds(3f);
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
+        overlaySystem = FindObjectOfType<OverlaySystem>().GetComponent<OverlaySystem>();
+        playerCharacters = FindObjectsOfType<Player>();
     }
 
-    private IEnumerator MoveToTilePath(List<Vector3Int> path)
+    private void Update()
     {
-        int pathLength = Mathf.Min(path.Count, maxTilesPerMove);
-
-        for (int i = 0; i < pathLength; i++)
+        if (gameManager != null && gameManager.currentTurn == GameManager.TurnType.Enemy && !hasMoved)
         {
-            Vector3 targetPosition = new Vector3(path[i].x + 0.5f, path[i].y + 0.5f, transform.position.z);
-            yield return StartCoroutine(MoveTo(targetPosition));
+            StartCoroutine(MoveToClosestPlayer());
+            hasMoved = true;
+            gameManager.availableCharacters--;
         }
     }
 
-    private IEnumerator MoveTowardsPlayer()
+    private IEnumerator MoveToClosestPlayer()
     {
-        while (true)
-        {
-            Vector3Int currentPosition = Vector3Int.FloorToInt(transform.position);
-            Vector3Int targetPosition = Vector3Int.FloorToInt(targetPlayer.transform.position);
-            List<Vector3Int> validMoveLocations = overlaySystem.GetValidMoveLocations(currentPosition, moveRange);
+        Player closestPlayer = null;
+        float closestDistance = float.MaxValue;
 
-            if (validMoveLocations.Count > 0)
+        foreach (Player player in playerCharacters)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance < closestDistance)
             {
-                Vector3Int bestMove = currentPosition;
-                float minDistance = float.MaxValue;
+                closestPlayer = player;
+                closestDistance = distance;
+            }
+        }
 
-                foreach (Vector3Int move in validMoveLocations)
+        if (closestPlayer != null)
+        {
+            Vector3Int targetTilePosition = overlaySystem.GetClosestValidMoveLocation(Vector3Int.FloorToInt(transform.position), Vector3Int.FloorToInt(closestPlayer.transform.position), moveRange);
+
+            if (targetTilePosition != Vector3Int.FloorToInt(transform.position))
+            {
+                List<Vector3Int> path = overlaySystem.Path(transform.position, targetTilePosition);
+                foreach (Vector3Int tile in path)
                 {
-                    float distance = Vector3Int.Distance(move, targetPosition);
-
-                    if (distance < minDistance)
+                    Vector3 targetPosition = new Vector3(tile.x + 0.5f, tile.y + 0.5f, transform.position.z);
+                    while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
                     {
-                        minDistance = distance;
-                        bestMove = move;
+                        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                        yield return null;
                     }
                 }
-
-                List<Vector3Int> path = overlaySystem.Path(transform.position, bestMove);
-                yield return StartCoroutine(MoveToTilePath(path));
+                transform.position = new Vector3(targetTilePosition.x + 0.5f, targetTilePosition.y + 0.5f, transform.position.z);
             }
-
-            yield return new WaitForSeconds(1f);
         }
     }
 }
-

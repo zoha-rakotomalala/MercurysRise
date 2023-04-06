@@ -11,16 +11,14 @@ public class OverlaySystem : MonoBehaviour
     public Tile invalidMoveTile; 
     private Player currentPlayer;
 
-    // Clear all tiles on the overlay tilemap when the game starts
     private void Start()
     {
         overlayTilemap.ClearAllTiles();
     }
 
-    // Handle player movement input and move the player if a valid move location is clicked
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && currentPlayer != null)
+        if (Input.GetMouseButtonDown(0) && currentPlayer != null && !currentPlayer.hasMoved)
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
@@ -29,12 +27,14 @@ public class OverlaySystem : MonoBehaviour
             {
                 currentPlayer.MoveToTile(clickedTilePosition);
                 overlayTilemap.ClearAllTiles();
+                currentPlayer.hasMoved = true;
+                FindObjectOfType<GameManager>().availableCharacters--;
                 currentPlayer = null;
             }
         }
     }
 
-    // Check if the given position is a valid move location (no obstacles or enemies)
+
     public bool IsValidMove(Vector3Int position)
     {
         bool noObstacle = obstaclesTilemap == null || !obstaclesTilemap.HasTile(position);
@@ -95,7 +95,6 @@ public class OverlaySystem : MonoBehaviour
         return closestValidMoveLocation;
     }
 
-    // Show valid and invalid move locations on the overlay tilemap based on the player's move range
     public void ShowValidMoveLocations(Player player)
     {
         Debug.Log("Showing valid move locations");

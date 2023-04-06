@@ -6,8 +6,10 @@ public class Player : MonoBehaviour
 {
     public int moveRange = 3;
     public float moveSpeed = 3f;
+    private GameManager gameManager;
     [SerializeField] private OverlaySystem OverlaySystem;
-
+    [HideInInspector]
+    public bool hasMoved = false;
     // Coroutine to move the player to the target position
     private IEnumerator MoveTo(Vector3 targetPosition)
     {
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     {
         List<Vector3Int> path = OverlaySystem.Path(transform.position, targetTilePosition);
         StartCoroutine(MoveToTilePath(path));
+
     }
 
     // Returns a list of valid move locations for the player
@@ -85,7 +88,16 @@ public class Player : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // TODO: When Enemy instance created, remove the comment here to make sure Players can only move during their own turn
         Debug.Log("Player clicked");
-        OverlaySystem.ShowValidMoveLocations(this);
+        if (!hasMoved /*&& gameManager.currentTurn==GameManager.TurnType.Player*/)
+        {
+            OverlaySystem.ShowValidMoveLocations(this);
+        }
+    }
+
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
 }
