@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public bool hasMoved = false;
     public bool isDead = false;
+    public bool hasAttacked = false;
     // Coroutine to move the player to the target position
     private IEnumerator MoveTo(Vector3 targetPosition)
     {

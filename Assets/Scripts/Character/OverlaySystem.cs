@@ -8,6 +8,7 @@ public class OverlaySystem : MonoBehaviour
     public Tilemap obstaclesTilemap;
     public Tilemap enemiesTilemap; 
     public Tile validMoveTile;
+    public Tile validAttackTile;
     public Tile invalidMoveTile; 
     private Player currentPlayer;
     [HideInInspector]
@@ -43,9 +44,20 @@ public class OverlaySystem : MonoBehaviour
                 currentPlayer.MoveToTile(clickedTilePosition);
                 overlayTilemap.ClearAllTiles();
                 currentPlayer.hasMoved = true;
-                FindObjectOfType<GameManager>().availableCharacters--;
+                //FindObjectOfType<GameManager>().availableCharacters--;
                 currentPlayer = null;
             }
+        }
+        else if (Input.GetMouseButton(0) && currentPlayer != null && !currentPlayer.hasAttacked)
+        {
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
+
+            if (occupiedTiles.ContainsValue(clickedTilePosition))
+            {
+                overlayTilemap.ClearAllTiles();
+            }
+            
         }
     }
 
@@ -237,6 +249,30 @@ public class OverlaySystem : MonoBehaviour
             path.Reverse(); 
         }
         return path;
+    }
+
+    public void ShowValidAttackLocations(Player player)
+    {
+        overlayTilemap.ClearAllTiles();
+        currentPlayer = player;
+        Vector3Int currentPlayerTile = overlayTilemap.WorldToCell(player.transform.position);
+
+        for (int x = -player.attackRange; x <= player.attackRange; x++)
+        {
+            for (int y = -player.attackRange; y <= player.attackRange; y++)
+            {
+                Vector3Int location = currentPlayerTile + new Vector3Int(x, y, 0);
+                int distance = Mathf.Abs(x) + Mathf.Abs(y); // Manhattan distance
+
+                if (location == currentPlayerTile || distance > player.attackRange)
+                {
+                    continue;
+                }
+
+                overlayTilemap.SetTile(location, validAttackTile);
+                
+            }
+        }
     }
 
 }

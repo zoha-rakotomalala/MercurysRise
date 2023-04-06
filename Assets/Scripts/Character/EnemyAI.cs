@@ -17,12 +17,24 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]
     public bool hasMoved = false;
     public bool isDead = false;
+    public GameObject menu;
 
     private void Start()
     {
         StartCoroutine(Init());
     }
 
+    // When targeted for an attack
+    private void OnMouseDown()
+    {
+        if (menu.GetComponent<Menu>().currentlyAttacking)
+        {
+            menu.GetComponent<Menu>().enemy = this;
+            Debug.Log("Enemy chosen");
+            overlaySystem.overlayTilemap.ClearAllTiles();
+        }
+        
+    }
     private IEnumerator Init()
     {
         yield return new WaitForSeconds(3f);
