@@ -42,6 +42,58 @@ public class OverlaySystem : MonoBehaviour
 
         return noObstacle && noEnemy;
     }
+    public Vector3Int GetClosestValidMoveLocation(Vector3Int startPosition, Vector3Int targetPosition, int moveRange)
+    {
+        List<Vector3Int> validMoveLocations = new List<Vector3Int>();
+        Queue<Vector3Int> queue = new Queue<Vector3Int>();
+        Dictionary<Vector3Int, int> visited = new Dictionary<Vector3Int, int>();
+
+        queue.Enqueue(startPosition);
+        visited[startPosition] = 0;
+
+        Vector3Int[] directions = new Vector3Int[]
+        {
+        Vector3Int.up,
+        Vector3Int.down,
+        Vector3Int.left,
+        Vector3Int.right
+        };
+
+        while (queue.Count > 0)
+        {
+            Vector3Int current = queue.Dequeue();
+            int currentDistance = visited[current];
+
+            foreach (Vector3Int direction in directions)
+            {
+                Vector3Int neighbor = current + direction;
+                int neighborDistance = currentDistance + 1;
+
+                if (IsValidMove(neighbor) && !visited.ContainsKey(neighbor) && neighborDistance <= moveRange)
+                {
+                    queue.Enqueue(neighbor);
+                    visited[neighbor] = neighborDistance;
+                    validMoveLocations.Add(neighbor);
+                }
+            }
+        }
+
+        Vector3Int closestValidMoveLocation = startPosition;
+        float closestDistance = float.MaxValue;
+
+        foreach (Vector3Int location in validMoveLocations)
+        {
+            float distance = Vector3Int.Distance(location, targetPosition);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestValidMoveLocation = location;
+            }
+        }
+
+        return closestValidMoveLocation;
+    }
 
     // Show valid and invalid move locations on the overlay tilemap based on the player's move range
     public void ShowValidMoveLocations(Player player)
