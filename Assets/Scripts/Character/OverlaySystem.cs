@@ -4,14 +4,15 @@ using UnityEngine.Tilemaps;
 
 public class OverlaySystem : MonoBehaviour
 {
-    public Tilemap overlayTilemap; 
+    public Tilemap overlayTilemap;
     public Tilemap obstaclesTilemap;
-    public Tilemap enemiesTilemap; 
+    public Tilemap enemiesTilemap;
     public Tile validMoveTile;
-    public Tile invalidMoveTile; 
+    public Tile validAttackTile;
+    public Tile invalidMoveTile;
     private Player currentPlayer;
     [HideInInspector]
-    public Dictionary<GameObject, Vector3> occupiedTiles= new Dictionary<GameObject, Vector3>();
+    public Dictionary<GameObject, Vector3> occupiedTiles = new Dictionary<GameObject, Vector3>();
     private GameObject[] playableCharacters;
     private GameObject[] enemyCharacters;
 
@@ -21,11 +22,11 @@ public class OverlaySystem : MonoBehaviour
         playableCharacters = GameObject.FindGameObjectsWithTag("Player");
         enemyCharacters = GameObject.FindGameObjectsWithTag("Enemy");
 
-        foreach(GameObject player in playableCharacters)
+        foreach (GameObject player in playableCharacters)
         {
             occupiedTiles.Add(player, player.GetComponent<Player>().transform.position);
         }
-        foreach(GameObject enemy in enemyCharacters)
+        foreach (GameObject enemy in enemyCharacters)
         {
             occupiedTiles.Add(enemy, enemy.GetComponent<EnemyAI>().transform.position);
         }
@@ -42,10 +43,19 @@ public class OverlaySystem : MonoBehaviour
             {
                 currentPlayer.MoveToTile(clickedTilePosition);
                 overlayTilemap.ClearAllTiles();
-                currentPlayer.hasMoved = true;
-                FindObjectOfType<GameManager>().availableCharacters--;
                 currentPlayer = null;
             }
+        }
+        else if (Input.GetMouseButton(0) && currentPlayer != null && !currentPlayer.hasAttacked)
+        {
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
+
+            if (occupiedTiles.ContainsValue(clickedTilePosition))
+            {
+                overlayTilemap.ClearAllTiles();
+            }
+
         }
     }
 
@@ -234,9 +244,33 @@ public class OverlaySystem : MonoBehaviour
                 path.Add(current);
                 current = cameFrom[current];
             }
-            path.Reverse(); 
+            path.Reverse();
         }
         return path;
+    }
+
+    public void ShowValidAttackLocations(Player player)
+    {
+        overlayTilemap.ClearAllTiles();
+        currentPlayer = player;
+        Vector3Int currentPlayerTile = overlayTilemap.WorldToCell(player.transform.position);
+
+        for (int x = -player.attackRange; x <= player.attackRange; x++)
+        {
+            for (int y = -player.attackRange; y <= player.attackRange; y++)
+            {
+                Vector3Int location = currentPlayerTile + new Vector3Int(x, y, 0);
+                int distance = Mathf.Abs(x) + Mathf.Abs(y); // Manhattan distance
+
+                if (location == currentPlayerTile || distance > player.attackRange)
+                {
+                    continue;
+                }
+
+                overlayTilemap.SetTile(location, validAttackTile);
+
+            }
+        }
     }
 
 }
