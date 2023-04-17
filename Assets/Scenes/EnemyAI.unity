@@ -981,6 +981,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007163311}
   m_CullTransparentMesh: 1
+--- !u!1 &1017022495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+  m_PrefabInstance: {fileID: 7269020018543546565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017022500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017022495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c1ea59df787cd4aaa472812ca4b5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  attackRange: 3
+  attackDamages: 3
+  hasAttacked: 0
+  rangedAttackRange: 3
 --- !u!1 &1111578874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,11 +1202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341512, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.1
+      value: 8.47
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341512, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.11
+      value: -14.45
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341512, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1358,6 +1380,7 @@ GameObject:
   - component: {fileID: 1457126491}
   - component: {fileID: 1457126493}
   - component: {fileID: 1457126492}
+  - component: {fileID: 1457126494}
   m_Layer: 0
   m_Name: BackgroundTilemap
   m_TagString: Untagged
@@ -12929,6 +12952,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1457126494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457126490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5de09027080cf14c95e8facb263c8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  attackRange: 2
+  attackDamages: 5
+  hasAttacked: 0
 --- !u!1 &1482446089
 GameObject:
   m_ObjectHideFlags: 0
@@ -13505,6 +13544,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.23529413
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.23529413
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_Color.r
+      value: 0.23529413
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
@@ -13526,7 +13577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name
-      value: Player (1)
+      value: Swordsman
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Layer
@@ -13674,6 +13725,27 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+--- !u!1 &2037259574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+  m_PrefabInstance: {fileID: 1708260796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2037259579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037259574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5de09027080cf14c95e8facb263c8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  attackRange: 6
+  attackDamages: 2
+  hasAttacked: 0
 --- !u!1 &2049838654
 GameObject:
   m_ObjectHideFlags: 0
@@ -14240,7 +14312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Archer
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Layer

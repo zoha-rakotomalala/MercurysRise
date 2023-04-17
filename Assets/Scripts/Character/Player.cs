@@ -54,6 +54,39 @@ public class Player : MonoBehaviour
 
     }
 
+    public virtual List<Vector3Int> GetValidAttackLocations()
+    {
+        Vector3Int currentPosition = Vector3Int.FloorToInt(transform.position);
+        List<Vector3Int> validAttackLocations = new List<Vector3Int>();
+
+        Vector3Int[] directions = new Vector3Int[]
+        {
+            Vector3Int.up,
+            Vector3Int.down,
+            Vector3Int.left,
+            Vector3Int.right
+        };
+
+        foreach (Vector3Int direction in directions)
+        {
+            for (int i = 1; i <= attackRange; i++)
+            {
+                Vector3Int attackLocation = currentPosition + (direction * i);
+
+                if (OverlaySystem.IsValidMove(attackLocation))
+                {
+                    validAttackLocations.Add(attackLocation);
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        return validAttackLocations;
+    }
+
     // Returns a list of valid move locations for the player
     private List<Vector3Int> GetValidMoveLocations(Vector3Int currentPosition, int moveRange)
     {

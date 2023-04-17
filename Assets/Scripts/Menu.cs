@@ -42,7 +42,7 @@ public class Menu : MonoBehaviour
             targetedPlayer.Attack(enemy.gameObject);
         }*/
         currentlyAttacking = true;
-        OverlaySystem.ShowValidAttackLocations(targetedPlayer);
+        OverlaySystem.ShowValidAttackLocations(targetedPlayer.GetComponent<Classes>());
         hideMenu();
     }
 

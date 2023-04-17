@@ -240,27 +240,14 @@ public class OverlaySystem : MonoBehaviour
         return path;
     }
 
-    public void ShowValidAttackLocations(Player player)
+    public void ShowValidAttackLocations(Classes character)
     {
         overlayTilemap.ClearAllTiles();
-        currentPlayer = player;
-        Vector3Int currentPlayerTile = overlayTilemap.WorldToCell(player.transform.position);
+        List<Vector3Int> validAttackLocations = character.GetValidAttackLocations(this);
 
-        for (int x = -player.attackRange; x <= player.attackRange; x++)
+        foreach (Vector3Int attackLocation in validAttackLocations)
         {
-            for (int y = -player.attackRange; y <= player.attackRange; y++)
-            {
-                Vector3Int location = currentPlayerTile + new Vector3Int(x, y, 0);
-                int distance = Mathf.Abs(x) + Mathf.Abs(y); // Manhattan distance
-
-                if (location == currentPlayerTile || distance > player.attackRange)
-                {
-                    continue;
-                }
-
-                overlayTilemap.SetTile(location, validAttackTile);
-
-            }
+            overlayTilemap.SetTile(attackLocation, validAttackTile);
         }
     }
 
