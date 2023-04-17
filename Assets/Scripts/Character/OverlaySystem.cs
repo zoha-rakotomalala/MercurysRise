@@ -154,44 +154,35 @@ public class OverlaySystem : MonoBehaviour
             }
         }
     }
-    public List<Vector3Int> GetValidMoveLocations(Vector3Int currentPosition, int moveRange)
+    public List<Vector3Int> GetValidAttackLocations(Vector3Int currentPosition, int attackRange)
     {
-        Queue<Vector3Int> queue = new Queue<Vector3Int>();
-        Dictionary<Vector3Int, int> visited = new Dictionary<Vector3Int, int>();
-
-        queue.Enqueue(currentPosition);
-        visited[currentPosition] = 0;
-
-        List<Vector3Int> validMoveLocations = new List<Vector3Int>();
+        List<Vector3Int> validAttackLocations = new List<Vector3Int>();
 
         Vector3Int[] directions = new Vector3Int[]
         {
             Vector3Int.up,
             Vector3Int.down,
             Vector3Int.left,
-            Vector3Int.right
+            Vector3Int.right,
+            Vector3Int.up + Vector3Int.right,
+            Vector3Int.up + Vector3Int.left,
+            Vector3Int.down + Vector3Int.right,
+            Vector3Int.down + Vector3Int.left,
         };
 
-        while (queue.Count > 0)
+        for (int i = 1; i <= attackRange; i++)
         {
-            Vector3Int current = queue.Dequeue();
-            int currentDistance = visited[current];
-
             foreach (Vector3Int direction in directions)
             {
-                Vector3Int neighbor = current + direction;
-                int neighborDistance = currentDistance + 1;
-
-                if (IsValidMove(neighbor) && !visited.ContainsKey(neighbor) && neighborDistance <= moveRange)
+                Vector3Int neighbor = currentPosition + direction * i;
+                if (neighbor != currentPosition)
                 {
-                    queue.Enqueue(neighbor);
-                    visited[neighbor] = neighborDistance;
-                    validMoveLocations.Add(neighbor);
+                    validAttackLocations.Add(neighbor);
                 }
             }
         }
 
-        return validMoveLocations;
+        return validAttackLocations;
     }
 
     // Generates a path from the player's current position to the target tile position
