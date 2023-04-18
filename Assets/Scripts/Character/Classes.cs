@@ -7,7 +7,7 @@ public abstract class Classes : MonoBehaviour
     public int health;
     public int attackRange;
     public int attackDamages;
-    public bool hasAttacked;
+    public bool hasAttacked = false;
 
     public abstract void Attack(GameObject enemy);
     public abstract List<Vector3Int> GetValidAttackLocations(OverlaySystem overlaySystem);

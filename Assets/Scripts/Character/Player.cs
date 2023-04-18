@@ -137,12 +137,10 @@ public class Player : MonoBehaviour
     {
         // TODO: When Enemy instance created, remove the comment here to make sure Players can only move during their own turn
         Debug.Log("Player clicked");
-        if (!hasMoved && gameManager.currentTurn == GameManager.TurnType.Player)
+        if (!hasMoved && !hasAttacked && gameManager.currentTurn == GameManager.TurnType.Player)
         {
-            //OverlaySystem.ShowValidMoveLocations(this);
             menu.GetComponent<Menu>().displayMenu();
             menu.GetComponent<Menu>().targetedPlayer = this;
-
         }
     }
 
@@ -187,6 +185,8 @@ public class Player : MonoBehaviour
         FindObjectOfType<GameManager>().availableCharacters--;
 
     }
+  
+
     #endregion
 
     #region Menu

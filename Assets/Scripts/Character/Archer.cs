@@ -12,16 +12,23 @@ public class Archer : Classes
         }
     public override void Attack(GameObject enemy)
     {
-        if (!hasAttacked)
+        if (hasAttacked) return;
+
+        OverlaySystem overlaySystem = FindObjectOfType<OverlaySystem>();
+        Vector3Int enemyPosition = Vector3Int.FloorToInt(enemy.transform.position);
+        List<Vector3Int> validAttackLocations = GetValidAttackLocations(overlaySystem);
+
+        if (validAttackLocations.Contains(enemyPosition))
         {
             EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
-            if (Vector3Int.Distance(Vector3Int.FloorToInt(transform.position), Vector3Int.FloorToInt(enemy.transform.position)) <= rangedAttackRange)
-            {
-                enemyAI.updateHealth(-attackDamages);
-                hasAttacked = true;
-            }
+            enemyAI.updateHealth(-attackDamages);
+            hasAttacked = true;
+            FindObjectOfType<GameManager>().availableCharacters--;
         }
     }
+
+
+
     public override List<Vector3Int> GetValidAttackLocations(OverlaySystem overlaySystem)
     {
         Vector3Int currentPosition = Vector3Int.FloorToInt(transform.position);

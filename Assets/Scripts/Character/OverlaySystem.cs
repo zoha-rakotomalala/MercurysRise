@@ -34,7 +34,9 @@ public class OverlaySystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && currentPlayer != null && !currentPlayer.hasMoved)
+        Menu menu = FindObjectOfType<Menu>();
+
+        if (Input.GetMouseButtonDown(0) && currentPlayer != null && !currentPlayer.hasMoved && !menu.currentlyAttacking)
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
@@ -51,12 +53,24 @@ public class OverlaySystem : MonoBehaviour
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
 
-            if (occupiedTiles.ContainsValue(clickedTilePosition))
+            GameObject enemyObject = null;
+
+            foreach (KeyValuePair<GameObject, Vector3> entry in occupiedTiles)
             {
-                overlayTilemap.ClearAllTiles();
+                if (Vector3Int.FloorToInt(entry.Value) == clickedTilePosition)
+                {
+                    enemyObject = entry.Key;
+                    break;
+                }
             }
 
+            if (enemyObject != null)
+            {
+                currentPlayer.Attack(enemyObject);
+                overlayTilemap.ClearAllTiles();
+            }
         }
+
     }
 
 

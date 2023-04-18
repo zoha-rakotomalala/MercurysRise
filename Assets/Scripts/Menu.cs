@@ -37,6 +37,8 @@ public class Menu : MonoBehaviour
 
     public void Attack()
     {
+        if (targetedPlayer.hasAttacked) return;
+
         // TODO: Highlight the potential attack tiles on the overlay
         /*if (Mathf.Abs(Vector3.Distance(targetedPlayer.transform.position,enemy.transform.position))<=targetedPlayer.attackRange) {
             targetedPlayer.Attack(enemy.gameObject);
@@ -45,6 +47,7 @@ public class Menu : MonoBehaviour
         OverlaySystem.ShowValidAttackLocations(targetedPlayer.GetComponent<Classes>());
         hideMenu();
     }
+
 
     private void Start()
     {
