@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     public bool isDead = false;
     [HideInInspector]
     public bool hasAttacked = false;
+    [HideInInspector]
+    public bool selected = false;
 
 
     // Coroutine to move the player to the target position
@@ -57,7 +59,8 @@ public class Player : MonoBehaviour
         List<Vector3Int> path = OverlaySystem.Path(transform.position, targetTilePosition);
         StartCoroutine(MoveToTilePath(path));
         hasMoved = true;
-        FindObjectOfType<GameManager>().availableCharacters--;
+        //FindObjectOfType<GameManager>().availableCharacters--;
+        menu.GetComponent<Menu>().displayMenu();
 
     }
 
@@ -111,11 +114,13 @@ public class Player : MonoBehaviour
     {
         // TODO: When Enemy instance created, remove the comment here to make sure Players can only move during their own turn
         Debug.Log("Player clicked");
-        if (!hasMoved && gameManager.currentTurn == GameManager.TurnType.Player)
+        selected = true;
+        if ((!hasMoved || !hasAttacked) && gameManager.currentTurn == GameManager.TurnType.Player)
         {
             //OverlaySystem.ShowValidMoveLocations(this);
-            menu.GetComponent<Menu>().displayMenu();
             menu.GetComponent<Menu>().targetedPlayer = this;
+            menu.GetComponent<Menu>().displayMenu();
+            
 
         }
     }
@@ -169,23 +174,6 @@ public class Player : MonoBehaviour
         hasAttacked = true;
         FindObjectOfType<GameManager>().availableCharacters--;
 
-    }
-    #endregion
-
-    #region Menu
-    public void displayMenu()
-    {
-        if (hasMoved)
-        {
-            return;
-        }
-
-        //TODO: When the player is clicked on and has not moved, we display a menu with three options "Move", "Attack" and "Wait".
-        //If the character is next to an enemy, it can attack it, but if they attack before moving, they will not be able to move after, it will finish the turn.
-        //If the player clicks on Move, we show
-        // the possible places to move to, and they can move there. Once they have finished moving, the menu appears again if within attacking range of an enemy, and they can 
-        // choose to attack or wait.
-        // If they choose to wait, it just updates the "hasMoved" field to true, to show that the character has been done with.
     }
     #endregion
 }

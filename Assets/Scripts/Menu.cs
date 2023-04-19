@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Menu : MonoBehaviour
     public bool currentlyAttacking = false;
     [SerializeField] private OverlaySystem OverlaySystem;
     private bool overlayDisplayed = false;
+    public Button moveButton;
+    public Button attackButton;
+    public Button waitButton;
     public void displayMenu()
     {
         this.gameObject.SetActive(true);
@@ -18,7 +22,22 @@ public class Menu : MonoBehaviour
             OverlaySystem.overlayTilemap.ClearAllTiles();
             overlayDisplayed = false;
         }
-        
+        if (targetedPlayer.hasMoved)
+        {
+            moveButton.interactable= false;
+        }
+        else
+        {
+            moveButton.interactable= true;
+        }
+        if (targetedPlayer.hasAttacked)
+        {
+            attackButton.interactable= false;
+        }
+        else
+        {
+            attackButton.interactable= true;
+        }
         currentlyAttacking = false;
     }
 
@@ -39,8 +58,10 @@ public class Menu : MonoBehaviour
     public void Wait()
     {
         targetedPlayer.hasMoved = true;
+        targetedPlayer.hasAttacked= true;
         FindObjectOfType<GameManager>().availableCharacters--;
         hideMenu();
+        targetedPlayer.selected = false;
     }
 
     public void Attack()

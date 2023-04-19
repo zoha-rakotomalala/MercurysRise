@@ -484,6 +484,9 @@ MonoBehaviour:
   enemy: {fileID: 0}
   currentlyAttacking: 0
   OverlaySystem: {fileID: 0}
+  moveButton: {fileID: 1007163313}
+  attackButton: {fileID: 1596835503}
+  waitButton: {fileID: 2129660159}
 --- !u!1 &385387564
 GameObject:
   m_ObjectHideFlags: 0
