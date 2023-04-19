@@ -34,44 +34,39 @@ public class OverlaySystem : MonoBehaviour
 
     private void Update()
     {
-        Menu menu = FindObjectOfType<Menu>();
-
-        if (Input.GetMouseButtonDown(0) && currentPlayer != null && !currentPlayer.hasMoved && !menu.currentlyAttacking)
+        if (Input.GetMouseButtonDown(0) && currentPlayer != null)
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
 
-            if (overlayTilemap.GetTile(clickedTilePosition) == validMoveTile)
+            if (!currentPlayer.hasMoved && overlayTilemap.GetTile(clickedTilePosition) == validMoveTile)
             {
                 currentPlayer.MoveToTile(clickedTilePosition);
                 overlayTilemap.ClearAllTiles();
                 currentPlayer = null;
             }
-        }
-        else if (Input.GetMouseButton(0) && currentPlayer != null && !currentPlayer.hasAttacked)
-        {
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int clickedTilePosition = overlayTilemap.WorldToCell(mouseWorldPosition);
-
-            GameObject enemyObject = null;
-
-            foreach (KeyValuePair<GameObject, Vector3> entry in occupiedTiles)
+            else if (!currentPlayer.hasAttacked && occupiedTiles.ContainsValue(clickedTilePosition))
             {
-                if (Vector3Int.FloorToInt(entry.Value) == clickedTilePosition)
+                GameObject targetEnemy = null;
+                foreach (var enem in occupiedTiles)
                 {
-                    enemyObject = entry.Key;
-                    break;
+                    if (enem.Value == clickedTilePosition && enem.Key.CompareTag("Enemy"))
+                    {
+                        targetEnemy = enem.Key;
+                        break;
+                    }
+                }
+                if (targetEnemy != null)
+                {
+                    currentPlayer.GetComponent<Classes>().Attack(targetEnemy);
+                    overlayTilemap.ClearAllTiles();
+                    currentPlayer = null;
                 }
             }
-
-            if (enemyObject != null)
-            {
-                currentPlayer.Attack(enemyObject);
-                overlayTilemap.ClearAllTiles();
-            }
         }
-
     }
+
+
 
 
     public bool IsValidMove(Vector3Int position)

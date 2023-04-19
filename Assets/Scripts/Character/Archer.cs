@@ -14,8 +14,9 @@ public class Archer : Classes
     {
         if (hasAttacked) return;
 
+        OverlaySystem overlaySystem = FindObjectOfType<OverlaySystem>();
         Vector3Int enemyPosition = Vector3Int.FloorToInt(enemy.transform.position);
-        List<Vector3Int> validAttackLocations = GetValidAttackLocations();
+        List<Vector3Int> validAttackLocations = GetValidAttackLocations(overlaySystem);
 
         if (validAttackLocations.Contains(enemyPosition))
         {
