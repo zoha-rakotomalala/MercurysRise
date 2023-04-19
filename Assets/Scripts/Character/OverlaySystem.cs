@@ -254,7 +254,7 @@ public class OverlaySystem : MonoBehaviour
         overlayTilemap.ClearAllTiles();
         currentPlayer = player;
         Vector3Int currentPlayerTile = overlayTilemap.WorldToCell(player.transform.position);
-
+        Debug.Log("Player's attack range: " + player.attackRange);
         for (int x = -player.attackRange; x <= player.attackRange; x++)
         {
             for (int y = -player.attackRange; y <= player.attackRange; y++)

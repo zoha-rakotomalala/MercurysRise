@@ -9,9 +9,16 @@ public class Menu : MonoBehaviour
     public EnemyAI enemy;
     public bool currentlyAttacking = false;
     [SerializeField] private OverlaySystem OverlaySystem;
+    private bool overlayDisplayed = false;
     public void displayMenu()
     {
         this.gameObject.SetActive(true);
+        if (overlayDisplayed)
+        {
+            OverlaySystem.overlayTilemap.ClearAllTiles();
+            overlayDisplayed = false;
+        }
+        
         currentlyAttacking = false;
     }
 
@@ -23,6 +30,7 @@ public class Menu : MonoBehaviour
     public void Move()
     {
         OverlaySystem.ShowValidMoveLocations(targetedPlayer);
+        overlayDisplayed = true;
         //FindObjectOfType<GameManager>().availableCharacters--;
         //targetedPlayer.hasMoved = true;
         hideMenu();
@@ -42,6 +50,7 @@ public class Menu : MonoBehaviour
             targetedPlayer.Attack(enemy.gameObject);
         }*/
         currentlyAttacking = true;
+        overlayDisplayed = true;
         OverlaySystem.ShowValidAttackLocations(targetedPlayer);
         hideMenu();
     }

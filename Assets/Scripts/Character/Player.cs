@@ -6,11 +6,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int moveRange = 3;
-    public float moveSpeed = 3f;
+    [HideInInspector]
+    public int moveRange;
+    [HideInInspector]
+    public float moveSpeed;
+    [HideInInspector]
     public int health;
+    [HideInInspector]
     public int attackDamages;
-    public int attackRange = 1;
+    [HideInInspector]
+    public int attackRange;
     private GameManager gameManager;
     public GameObject menu;
     [SerializeField] private OverlaySystem OverlaySystem;
@@ -20,6 +25,8 @@ public class Player : MonoBehaviour
     public bool isDead = false;
     [HideInInspector]
     public bool hasAttacked = false;
+
+
     // Coroutine to move the player to the target position
     private IEnumerator MoveTo(Vector3 targetPosition)
     {
@@ -117,6 +124,15 @@ public class Player : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
         //menu = GameObject.FindGameObjectWithTag("Menu");
+        Classes playerClass = this.GetComponent<Classes>();
+        /*moveRange = playerClass.moveRange;
+        moveSpeed = playerClass.moveSpeed;
+        health = playerClass.health;
+        attackDamages= playerClass.attackDamages;
+        attackRange = playerClass.attackRange;*/
+        playerClass.GetClassCharacteristics(this);
+        Debug.Log(this.transform.name + ": " + " move range = " + moveRange + " move speed= " + moveSpeed + " health= " + health + " attack damages= " + attackDamages + " attack range =" + attackRange);
+
     }
 
     #region Health_functions
