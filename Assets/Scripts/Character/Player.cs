@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     public string Class;
     [HideInInspector]
     public HoverShowStats hoveringSystem;
+    //public Animator animator;
 
 
     // Coroutine to move the player to the target position
@@ -50,11 +52,35 @@ public class Player : MonoBehaviour
     }
 
     // Coroutine to move the player along a path of tiles
-    private IEnumerator MoveToTilePath(List<Vector3Int> path)
+    /*private IEnumerator MoveToTilePath(List<Vector3Int> path)
     {
         foreach (Vector3Int tile in path)
         {
             Vector3 targetPosition = new Vector3(tile.x + 0.5f, tile.y + 0.5f, transform.position.z);
+            yield return StartCoroutine(MoveTo(targetPosition));
+        }
+    }*/
+    private IEnumerator MoveToTilePath(List<Vector3Int> path)
+    {
+        Vector3Int currentPosition = Vector3Int.FloorToInt(transform.position);
+        foreach (Vector3Int tile in path)
+        {
+            Vector3 targetPosition = new Vector3(tile.x + 0.5f, tile.y + 0.5f, transform.position.z);
+
+            // Calculate the direction of the movement
+            Vector3Int direction = Vector3Int.RoundToInt(targetPosition - transform.position);
+
+            // Map the direction to one of the four directions (up, down, left, right)
+            /*int x = 0, y = 0;
+            if (direction.x > 0) x = 1;
+            else if (direction.x < 0) x = -1;
+            if (direction.y > 0) y = 1;
+            else if (direction.y < 0) y = -1;*/
+
+            // Set the X and Y parameters of the animator
+            //animator.SetFloat("X", x);
+            //animator.SetFloat("Y", y);
+
             yield return StartCoroutine(MoveTo(targetPosition));
         }
     }
@@ -144,6 +170,7 @@ public class Player : MonoBehaviour
         playerClass.GetClassCharacteristics(this);
         Debug.Log(this.transform.name + ": " + " move range = " + moveRange + " move speed= " + moveSpeed + " health= " + health + " attack damages= " + attackDamages + " attack range =" + attackRange);
         hoveringSystem = this.GetComponent<HoverShowStats>();
+        //animator = this.GetComponent<Animator>();
     }
 
     #region Health_functions
