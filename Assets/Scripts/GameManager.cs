@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -66,6 +67,11 @@ public class GameManager : MonoBehaviour
         turn.text = "Turn: " + currentTurn.ToString();
 
     }
+    private IEnumerator ChangeScenes(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("MoonMap");
+    }
 
     // Update is called once per frame
     void Update()
@@ -78,6 +84,7 @@ public class GameManager : MonoBehaviour
         if (aliveEnemyCharacters == 0)
         {
             Win();
+            StartCoroutine(ChangeScenes(5));
         }
         if (alivePlayableCharacters == 0)
         {
@@ -98,6 +105,7 @@ public class GameManager : MonoBehaviour
     void Win()
     {
         win.SetActive(true);
+
     }
 
     void Lose()
