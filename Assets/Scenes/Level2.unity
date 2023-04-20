@@ -10487,18 +10487,18 @@ PrefabInstance:
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0034ab17019db3d429b1f298ec1059ea, type: 3}
+      objectReference: {fileID: 21300000, guid: 982520c8b9a55fc47b8040f94b1efa02, type: 3}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.9433962
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.g
-      value: 0.26319996
+      value: 0.9433962
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.r
-      value: 0.07924521
+      value: 0.9433962
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SortingOrder
@@ -24846,7 +24846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1943980811
 RectTransform:
   m_ObjectHideFlags: 0
