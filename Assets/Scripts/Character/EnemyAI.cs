@@ -12,15 +12,20 @@ public class EnemyAI : MonoBehaviour
     public int moveRange = 3;
     public float moveSpeed = 3f;
     public int health;
+    [HideInInspector]
+    public int maxHealth;
     public int attackDamages;
     public int attackRange = 1;
     [HideInInspector]
     public bool hasMoved = false;
     public bool isDead = false;
     public GameObject menu;
+    private HoverShowStats hoveringSystem;
 
     private void Start()
     {
+        maxHealth = health;
+        hoveringSystem = this.GetComponent<HoverShowStats>();
         StartCoroutine(Init());
     }
 

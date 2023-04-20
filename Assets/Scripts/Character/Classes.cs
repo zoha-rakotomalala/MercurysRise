@@ -32,24 +32,30 @@ public class Classes : MonoBehaviour
             player.moveRange = archer.moveRange;
             player.moveSpeed = archer.moveSpeed;
             player.health = archer.health;
+            player.maxHealth = player.health;
             player.attackDamages = archer.attackDamages;
             player.attackRange = archer.attackRange;
+            player.Class = "Archer";
         }
         else if (swordsman!=null)
         {
             player.moveRange = swordsman.moveRange;
             player.moveSpeed = swordsman.moveSpeed;
             player.health = swordsman.health;
+            player.maxHealth = player.health;
             player.attackRange = swordsman.attackRange;
             player.attackDamages = swordsman.attackDamages;
+            player.Class = "Swordsman";
         }
         else if (thief!=null)
         {
             player.moveRange = thief.moveRange;
             player.moveSpeed = thief.moveSpeed;
             player.health = thief.health;
+            player.maxHealth = player.health;
             player.attackRange = thief.attackRange;
             player.attackDamages = thief.attackDamages;
+            player.Class = "Thief";
         }
 
     }

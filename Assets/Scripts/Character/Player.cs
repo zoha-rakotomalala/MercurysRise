@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     [HideInInspector]
     public int health;
+    [HideInInspector] 
+    public int maxHealth;
     [HideInInspector]
     public int attackDamages;
     [HideInInspector]
@@ -27,6 +29,10 @@ public class Player : MonoBehaviour
     public bool hasAttacked = false;
     [HideInInspector]
     public bool selected = false;
+    [HideInInspector]
+    public string Class;
+    [HideInInspector]
+    public HoverShowStats hoveringSystem;
 
 
     // Coroutine to move the player to the target position
@@ -137,7 +143,7 @@ public class Player : MonoBehaviour
         attackRange = playerClass.attackRange;*/
         playerClass.GetClassCharacteristics(this);
         Debug.Log(this.transform.name + ": " + " move range = " + moveRange + " move speed= " + moveSpeed + " health= " + health + " attack damages= " + attackDamages + " attack range =" + attackRange);
-
+        hoveringSystem = this.GetComponent<HoverShowStats>();
     }
 
     #region Health_functions

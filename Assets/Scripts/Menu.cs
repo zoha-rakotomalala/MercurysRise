@@ -62,6 +62,7 @@ public class Menu : MonoBehaviour
         FindObjectOfType<GameManager>().availableCharacters--;
         hideMenu();
         targetedPlayer.selected = false;
+        targetedPlayer.hoveringSystem.hideCharacterStatistics();
     }
 
     public void Attack()
