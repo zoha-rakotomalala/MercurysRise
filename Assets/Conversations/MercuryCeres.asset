@@ -24,6 +24,7 @@ MonoBehaviour:
     text: Do you think some mere insults would be enough to make me lose sight of
       the obvious? I heard of your ambitions.
   - character: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
-    text: So you know what I want then? This place shall be mine!
+    text: So you know what I want then? Very well, I will let you see what my avatars
+      can do !
   - character: {fileID: 11400000, guid: aeaac5765bffb614da9fe476d279c542, type: 2}
     text: We will see about that. Guards, get into positions and protect the temple!

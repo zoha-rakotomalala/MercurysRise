@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa21560c9acf5541973567fd90f5d40, type: 3}
+  m_Name: MercuryLuna
+  m_EditorClassIdentifier: 
+  speakerLeft: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
+  speakerRight: {fileID: 11400000, guid: 4bf470b227129724db7a401886ddc1e3, type: 2}
+  lines:
+  - character: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
+    text: Luna, hi, how is it going? You look a bit pale, does the word "Sun" ring
+      a bell to you?
+  - character: {fileID: 11400000, guid: 4bf470b227129724db7a401886ddc1e3, type: 2}
+    text: Mercury, you are not funny. What business do you have in my temple?
+  - character: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
+    text: It's very simple, I just want to annex it. Don't fight me, I beat Ceres
+      very easily, and she joined me, you should do the same.
+  - character: {fileID: 11400000, guid: 4bf470b227129724db7a401886ddc1e3, type: 2}
+    text: You want me, goddess of the Moon, to surrender to a mere god of thievery,
+      who managed to beat the Goddess of Salads? How about no?
+  - character: {fileID: 11400000, guid: b9b2a0354ba2edc49b558e8af93ef35c, type: 2}
+    text: Well, you will see what a "mere god of thievery" can do. Good luck, you
+      will need it.
