@@ -249,7 +249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03153befb2a9f14e9949886b3873430, type: 2}
   m_sharedMaterial: {fileID: -3119800512959231190, guid: f03153befb2a9f14e9949886b3873430, type: 2}
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: CREDITS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03153befb2a9f14e9949886b3873430, type: 2}
   m_sharedMaterial: {fileID: -3119800512959231190, guid: f03153befb2a9f14e9949886b3873430, type: 2}
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03153befb2a9f14e9949886b3873430, type: 2}
   m_sharedMaterial: {fileID: -3119800512959231190, guid: f03153befb2a9f14e9949886b3873430, type: 2}
