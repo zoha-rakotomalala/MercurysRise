@@ -62,6 +62,7 @@ public class Menu : MonoBehaviour
         FindObjectOfType<GameManager>().availableCharacters--;
         hideMenu();
         targetedPlayer.selected = false;
+        targetedPlayer.GetComponent<SpriteRenderer>().sprite = targetedPlayer.finishedSprite;
         targetedPlayer.hoveringSystem.hideCharacterStatistics();
     }
 
@@ -75,6 +76,8 @@ public class Menu : MonoBehaviour
         overlayDisplayed = true;
         OverlaySystem.ShowValidAttackLocations(targetedPlayer);
         hideMenu();
+        targetedPlayer.selected = false;
+        targetedPlayer.GetComponent<SpriteRenderer>().sprite = targetedPlayer.finishedSprite;
     }
 
     private void Start()

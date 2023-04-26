@@ -10423,6 +10423,18 @@ PrefabInstance:
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.72
+      objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name
       value: TestEnemy (1)
@@ -10707,6 +10719,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1940534394}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
@@ -10714,6 +10730,14 @@ PrefabInstance:
       propertyPath: attackDamages
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
     - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
@@ -22703,10 +22727,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 629085706}
-  - {fileID: 1278145855}
   - {fileID: 2102357187}
-  - {fileID: 74552188}
+  - {fileID: 1278145855}
   - {fileID: 1630098307}
+  - {fileID: 74552188}
   - {fileID: 521023235}
   - {fileID: 324782212}
   m_Father: {fileID: 0}
@@ -23162,7 +23186,7 @@ RectTransform:
   m_Children:
   - {fileID: 537218548}
   m_Father: {fileID: 1482446093}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23276,11 +23300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.b
-      value: 0.7298683
+      value: 0.9622642
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.g
-      value: 0.7298683
+      value: 0.9622642
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.r
@@ -23299,12 +23323,36 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: attackDamages
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name
@@ -23453,6 +23501,18 @@ PrefabInstance:
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.72
+      objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name
       value: TestEnemy
@@ -23842,7 +23902,7 @@ RectTransform:
   m_Children:
   - {fileID: 2049838655}
   m_Father: {fileID: 1482446093}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -24234,15 +24294,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.b
-      value: 0.87043726
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.g
-      value: 0.9150943
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.r
-      value: 0.7545212
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SortingOrder
@@ -24257,12 +24317,36 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: attackDamages
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name

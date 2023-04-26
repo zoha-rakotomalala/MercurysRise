@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         switch (currentTurn)
         {
-            case TurnType.Player: { foreach (GameObject playerObject in players) { playerObject.GetComponent<Player>().hasMoved = false; playerObject.GetComponent<Player>().hasAttacked = false; }; break; }
+            case TurnType.Player: { foreach (GameObject playerObject in players) { playerObject.GetComponent<Player>().hasMoved = false; playerObject.GetComponent<Player>().hasAttacked = false; playerObject.GetComponent<SpriteRenderer>().sprite = playerObject.GetComponent<Player>().basicSprite; }; break; }
 
             case TurnType.Enemy: { foreach (GameObject enemyObject in enemies) { enemyObject.GetComponent<EnemyAI>().hasMoved = false; } break; }
         }

@@ -34,6 +34,9 @@ public class Player : MonoBehaviour
     public string Class;
     [HideInInspector]
     public HoverShowStats hoveringSystem;
+    public Sprite basicSprite;
+    public Sprite selectedSprite;
+    public Sprite finishedSprite;
     //public Animator animator;
 
 
@@ -150,7 +153,12 @@ public class Player : MonoBehaviour
         if ((!hasMoved || !hasAttacked) && gameManager.currentTurn == GameManager.TurnType.Player)
         {
             //OverlaySystem.ShowValidMoveLocations(this);
+            if (menu.GetComponent<Menu>().targetedPlayer!= null && menu.GetComponent<Menu>().targetedPlayer.GetComponent<SpriteRenderer>().sprite != finishedSprite)
+            {
+                menu.GetComponent<Menu>().targetedPlayer.GetComponent<SpriteRenderer>().sprite = basicSprite;
+            }
             menu.GetComponent<Menu>().targetedPlayer = this;
+            this.GetComponent<SpriteRenderer>().sprite = selectedSprite;
             menu.GetComponent<Menu>().displayMenu();
             
 

@@ -11554,6 +11554,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1940534394}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
@@ -11561,6 +11565,14 @@ PrefabInstance:
       propertyPath: attackDamages
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
     - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
@@ -23804,6 +23816,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1540164012}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
@@ -23811,6 +23827,14 @@ PrefabInstance:
       propertyPath: attackDamages
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
     - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
@@ -24427,6 +24451,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
@@ -24434,6 +24462,14 @@ PrefabInstance:
       propertyPath: attackDamages
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
     - target: {fileID: 2276357351029341515, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.5
@@ -24577,7 +24613,7 @@ PrefabInstance:
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0034ab17019db3d429b1f298ec1059ea, type: 3}
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -24607,6 +24643,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
@@ -24614,6 +24654,14 @@ PrefabInstance:
       propertyPath: attackDamages
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name
       value: ArcherCeres
@@ -25542,15 +25590,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.b
-      value: 0.87043726
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.g
-      value: 0.9150943
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Color.r
-      value: 0.7545212
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341513, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_SortingOrder
@@ -25565,6 +25613,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: basicSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3780cb2d893ae464495073644ee44b46, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: OverlaySystem
       value: 
       objectReference: {fileID: 1743774130}
@@ -25572,6 +25624,14 @@ PrefabInstance:
       propertyPath: attackDamages
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: finishedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 777c9ffc951c1344cbbbc3df94e991d3, type: 3}
+    - target: {fileID: 2276357351029341514, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
+      propertyPath: selectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f2fac157436d6b43a412643a8567290, type: 3}
     - target: {fileID: 2276357351029341873, guid: 41fe4ba38e144e847940f83498311ef5, type: 3}
       propertyPath: m_Name
       value: Swordsman
