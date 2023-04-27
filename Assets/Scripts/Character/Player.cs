@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
             //OverlaySystem.ShowValidMoveLocations(this);
             if (menu.GetComponent<Menu>().targetedPlayer!= null && menu.GetComponent<Menu>().targetedPlayer.GetComponent<SpriteRenderer>().sprite != finishedSprite)
             {
-                menu.GetComponent<Menu>().targetedPlayer.GetComponent<SpriteRenderer>().sprite = basicSprite;
+                menu.GetComponent<Menu>().targetedPlayer.GetComponent<SpriteRenderer>().sprite = menu.GetComponent<Menu>().targetedPlayer.basicSprite;
             }
             menu.GetComponent<Menu>().targetedPlayer = this;
             this.GetComponent<SpriteRenderer>().sprite = selectedSprite;
