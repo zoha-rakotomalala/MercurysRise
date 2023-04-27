@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Luna
   m_EditorClassIdentifier: 
   fullName: Luna
-  portrait: {fileID: 21300000, guid: 387722a63ba6db349841a7be0effee5b, type: 3}
+  portrait: {fileID: 21300000, guid: 93d7e1bf3ba518a41a4df9ad87768b8b, type: 3}

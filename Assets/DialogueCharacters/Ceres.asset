@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Ceres
   m_EditorClassIdentifier: 
   fullName: Ceres
-  portrait: {fileID: 21300000, guid: bdd37a424518ff74f89df7840acce557, type: 3}
+  portrait: {fileID: 21300000, guid: e118b7316c12f374789d4edfc913f3cb, type: 3}
